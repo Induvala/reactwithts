@@ -1,5 +1,6 @@
 import './App.css';
 import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
+import ProductList from './components/ProductList';
 import './index.css';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
      {/* <TodoApp/> */}
      {/* <LoginForm/> */}
      {/* <Posts/> */}
-     <ThemeSwitcher/>
+     {/* <ThemeSwitcher/> */}
+     <ProductList/>
     </div>
   );
 }
