@@ -1,10 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Counter from './counterapp/Counter';
-import TodoApp from './TodoApp/TodoApp';
-import LoginForm from './formHandlingApp/LoginForm';
-import Posts from './Posts/Posts';
+import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher';
+import './index.css';
 
 function App() {
   return (
@@ -12,7 +8,8 @@ function App() {
      {/* <Counter/> */}
      {/* <TodoApp/> */}
      {/* <LoginForm/> */}
-     <Posts/>
+     {/* <Posts/> */}
+     <ThemeSwitcher/>
     </div>
   );
 }

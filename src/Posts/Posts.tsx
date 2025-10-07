@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PaginationComponents from './PaginationComponents';
 
 interface PostProps{
     id:number;
@@ -10,6 +11,13 @@ function Posts() {
     const [error, setError] = useState<string>('');
     const [loading,setLoading] = useState<boolean>(false);
     const [debouncedValue,setDebouncedValue] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 10;
+
+    const totalPages = Math.ceil(data.length/postsPerPage);
+    const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
 
    const filterData = data.filter((item)=> item.title.toLocaleLowerCase().includes(debouncedValue.toLocaleLowerCase()));
     useEffect(()=>{
@@ -30,7 +38,7 @@ function Posts() {
 
     const timer = setTimeout(()=>{
             fetchData();
-    },8000)
+    },1000)
     return ()=>{
         clearTimeout(timer)
     }
@@ -40,12 +48,12 @@ function Posts() {
    <input type='text' value={debouncedValue} onChange={(e)=>setDebouncedValue(e.target.value)} placeholder='Enter Value'/>
    {filterData.length ===0 && loading &&  <p>....Loading</p>}
     <ul>
-        {filterData.map((item,id)=>(
+        {currentPosts.map((item,id)=>(
             <li key={id}>{item.title}</li>
         ))}
     </ul>
     {error && <p>{error}</p>}
-
+     <PaginationComponents currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>
    </>
   )
 }
